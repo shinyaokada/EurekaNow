@@ -12,8 +12,9 @@ function App() {
     axios.get('http://localhost:5000/users')
       .then(response => {
         const users = response.data;
-        const checkedIn = users.filter(user => user.isCheckedIn).map(user => user.name);
-        const registered = users.filter(user => !user.isCheckedIn).map(user => user.name);
+        // ユーザーオブジェクトを適切に取得
+        const checkedIn = users.filter(user => user.isCheckedIn);
+        const registered = users.filter(user => !user.isCheckedIn);
         setCheckedInUsers(checkedIn);
         setRegisteredUsers(registered);
       })
@@ -25,35 +26,33 @@ function App() {
       console.log('Please enter a name.');
       return;
     }
-    if (registeredUsers.includes(name) || checkedInUsers.includes(name)) {
+    if (registeredUsers.some(u => u.name === name) || checkedInUsers.some(u => u.name === name)) {
       console.log('User is already registered or checked in.');
       return;
     }
   
     axios.post('http://localhost:5000/users', { name })
       .then(response => {
-        setRegisteredUsers([...registeredUsers, response.data.name]);
+        setRegisteredUsers([...registeredUsers, response.data]); // ユーザーオブジェクトを追加
         setName('');
       })
       .catch(error => console.error('Error registering user:', error));
   };
   
   const handleCheckIn = (user) => {
-    const userId = registeredUsers.find(u => u === user);
-    axios.put(`http://localhost:5000/users/${userId}`)
+    axios.put(`http://localhost:5000/users/${user._id}`)
       .then(response => {
-        setCheckedInUsers([...checkedInUsers, response.data.name]);
-        setRegisteredUsers(registeredUsers.filter(u => u !== response.data.name));
+        setCheckedInUsers([...checkedInUsers, response.data]); // チェックインしたユーザーオブジェクトを追加
+        setRegisteredUsers(registeredUsers.filter(u => u._id !== user._id)); // 登録ユーザーリストから削除
       })
       .catch(error => console.error('Error checking in user:', error));
   };
 
   const handleCheckOut = (user) => {
-    const userId = checkedInUsers.find(u => u === user);
-    axios.put(`http://localhost:5000/users/${userId}`)
+    axios.put(`http://localhost:5000/users/${user._id}`)
       .then(response => {
-        setRegisteredUsers([...registeredUsers, response.data.name]);
-        setCheckedInUsers(checkedInUsers.filter(u => u !== response.data.name));
+        setRegisteredUsers([...registeredUsers, response.data]); // チェックアウトしたユーザーオブジェクトを追加
+        setCheckedInUsers(checkedInUsers.filter(u => u._id !== user._id)); // チェックインユーザーリストから削除
       })
       .catch(error => console.error('Error checking out user:', error));
   };
@@ -70,8 +69,8 @@ function App() {
         <h2>Checked-in Users</h2>
         <ul>
           {checkedInUsers.map((user, index) => (
-            <li key={index} onClick={() => handleCheckOut(user)}>
-              {user}
+            <li key={user._id} onClick={() => handleCheckOut(user)}>
+              {user.name}
             </li>
           ))}
         </ul>
@@ -81,8 +80,8 @@ function App() {
         <h2>Registered Users</h2>
         <ul>
           {registeredUsers.map((user, index) => (
-            <li key={index} onClick={() => handleCheckIn(user)}>
-              {user}
+            <li key={user._id} onClick={() => handleCheckIn(user)}>
+              {user.name}
             </li>
           ))}
         </ul>
