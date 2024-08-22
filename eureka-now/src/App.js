@@ -64,39 +64,42 @@ function App() {
   };
 
   return (
-    <div className="container">
-      <div className="column">
-        <h2>Checked-in Users</h2>
-        <ul>
-          {checkedInUsers.map((user, index) => (
-            <li key={user._id} onClick={() => handleCheckOut(user)}>
-              {user.name}
-            </li>
-          ))}
-        </ul>
-      </div>
+    <div>
+      <div className="title">EurekaNow</div>
+      <div className="container">
+        <div className="column">
+          <h2>Checked-in Users</h2>
+          <ul>
+            {checkedInUsers.map((user, index) => (
+              <li key={user._id} onClick={() => handleCheckOut(user)}>
+                {user.name}
+              </li>
+            ))}
+          </ul>
+        </div>
 
-      <div className="column">
-        <h2>Registered Users</h2>
-        <ul>
-          {registeredUsers.map((user, index) => (
-            <li key={user._id} onClick={() => handleCheckIn(user)}>
-              {user.name}
-            </li>
-          ))}
-        </ul>
-      </div>
+        <div className="column">
+          <h2>Registered Users</h2>
+          <ul>
+            {registeredUsers.map((user, index) => (
+              <li key={user._id} onClick={() => handleCheckIn(user)}>
+                {user.name}
+              </li>
+            ))}
+          </ul>
+        </div>
 
-      <div className="register-column">
-        <h2>Register</h2>
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          onKeyPress={handleKeyPress}
-          placeholder="Enter your name"
-        />
-        <button onClick={handleRegister}>Register</button>
+        <div className="register-column">
+          <h2>Register</h2>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            onKeyPress={handleKeyPress}
+            placeholder="Enter your name"
+          />
+          <button onClick={handleRegister}>Register</button>
+        </div>
       </div>
     </div>
   );

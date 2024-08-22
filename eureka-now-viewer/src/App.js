@@ -4,9 +4,13 @@ import './App.css';
 
 function App() {
   return (
-    <div className="container">
-      <CheckedInUsers />
+    <div>
+      <div className="title">EurekaNow</div>
+      <div className="container">
+        <CheckedInUsers />
+      </div>  
     </div>
+    
   );
 }
 

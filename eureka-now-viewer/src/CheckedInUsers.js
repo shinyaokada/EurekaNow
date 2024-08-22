@@ -20,7 +20,6 @@ function CheckedInUsers() {
 
   return (
     <div>
-      <h2>Checked-in Users</h2>
       <ul>
         {checkedInUsers.map((user, index) => (
           <li key={index}>{user.name}</li>
