@@ -9,7 +9,7 @@ function App() {
 
   useEffect(() => {
     // MongoDBからデータを取得
-    axios.get('http://localhost:5000/users')
+    axios.get('https://eureka-now-backend.vercel.app/users')
       .then(response => {
         const users = response.data;
         // ユーザーオブジェクトを適切に取得
@@ -31,7 +31,7 @@ function App() {
       return;
     }
   
-    axios.post('http://localhost:5000/users', { name })
+    axios.post('https://eureka-now-backend.vercel.app/users', { name })
       .then(response => {
         setRegisteredUsers([...registeredUsers, response.data]); // ユーザーオブジェクトを追加
         setName('');
@@ -40,7 +40,7 @@ function App() {
   };
   
   const handleCheckIn = (user) => {
-    axios.put(`http://localhost:5000/users/${user._id}`)
+    axios.put(`https://eureka-now-backend.vercel.app/users/${user._id}`)
       .then(response => {
         setCheckedInUsers([...checkedInUsers, response.data]); // チェックインしたユーザーオブジェクトを追加
         setRegisteredUsers(registeredUsers.filter(u => u._id !== user._id)); // 登録ユーザーリストから削除
@@ -49,7 +49,7 @@ function App() {
   };
 
   const handleCheckOut = (user) => {
-    axios.put(`http://localhost:5000/users/${user._id}`)
+    axios.put(`https://eureka-now-backend.vercel.app/users/${user._id}`)
       .then(response => {
         setRegisteredUsers([...registeredUsers, response.data]); // チェックアウトしたユーザーオブジェクトを追加
         setCheckedInUsers(checkedInUsers.filter(u => u._id !== user._id)); // チェックインユーザーリストから削除
