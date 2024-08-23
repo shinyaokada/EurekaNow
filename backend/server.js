@@ -1,12 +1,15 @@
+require('dotenv').config();
+
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const uri = process.env.MONGODB_URI;
 
 const app = express();
 const PORT = 5000;
 
 // MongoDBとの接続
-mongoose.connect('mongodb://localhost:27017/checkinapp', {
+mongoose.connect(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
