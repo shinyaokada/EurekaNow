@@ -1,5 +1,7 @@
 require('dotenv').config();
 
+
+
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -21,7 +23,9 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 
-app.use(cors());
+app.use(cors({
+  origin: ['https://eureka-now.vercel.app', 'https://eureka-now-viewer.vercel.app']
+}));
 app.use(express.json());
 
 // ユーザーの取得
