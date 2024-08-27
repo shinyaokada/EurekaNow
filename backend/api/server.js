@@ -63,8 +63,10 @@ app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
 
-// IPアドレスの取得
-app.put('/get-ip', async (req, res) => {
+
+app.get('/get-ip', (req, res) => {
   const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  console.log('IP Address:', ip); // IPアドレスをログに出力
   res.status(200).json({ ip });
 });
+
