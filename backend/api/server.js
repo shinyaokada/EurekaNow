@@ -62,3 +62,9 @@ app.put('/users/:id', async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
+
+// IPアドレスの取得
+app.put('/get-ip', async (req, res) => {
+  const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  res.status(200).json({ ip });
+});
