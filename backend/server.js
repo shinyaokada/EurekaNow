@@ -10,11 +10,12 @@ const uri = process.env.MONGODB_URI;
 const app = express();
 const PORT = 5000;
 
+console.log('MongoDB URI:', process.env.MONGODB_URI);
+
 // MongoDBとの接続
-mongoose.connect(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(uri)
+.then(() => console.log('Connected to MongoDB'))
+.catch(err => console.error('MongoDB connection error:', err));
 
 const userSchema = new mongoose.Schema({
   name: String,
