@@ -1,21 +1,19 @@
 require('dotenv').config();
 
-
-
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+
 const uri = process.env.MONGODB_URI;
 
 const app = express();
-const PORT = 5000;
-
-console.log('MongoDB URI:', process.env.MONGODB_URI);
+const PORT = process.env.PORT || 5000;
 
 // MongoDBとの接続
-mongoose.connect(uri)
-.then(() => console.log('Connected to MongoDB'))
-.catch(err => console.error('MongoDB connection error:', err));
+mongoose.connect(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 const userSchema = new mongoose.Schema({
   name: String,
@@ -24,9 +22,13 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 
+// CORS設定
 app.use(cors({
-  origin: ['https://eureka-now.vercel.app', 'https://eureka-now-viewer.vercel.app']
+  origin: ['https://eureka-now.vercel.app', 'https://eureka-now-viewer.vercel.app'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
 app.use(express.json());
 
 app.use((req, res, next) => {
