@@ -10,10 +10,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // MongoDBとの接続
-mongoose.connect(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(uri);
 
 const userSchema = new mongoose.Schema({
   name: String,
@@ -24,7 +21,7 @@ const User = mongoose.model('User', userSchema);
 
 // CORS設定
 app.use(cors({
-  origin: ['https://eureka-now.vercel.app', 'https://eureka-now-viewer.vercel.app'],
+  origin: ['https://eureka-now.vercel.app', 'https://eureka-now-viewer.vercel.app', 'http://localhost:3000'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
