@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c');
+
 body {
   margin: 0;
   font-family: 'Arial', sans-serif;
@@ -17,6 +19,7 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   max-width: 400px;
   width: 100%;
+  margin: 15px;
 }
 
 .title {
@@ -31,26 +34,9 @@ body {
 }
 
 
-
-.user-list {
-  list-style: none;
-  padding: 0;
+.container-title{
+  font-size:150%;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-weight: bold;
 }
 
-.user-item {
-  font-size: 1.2em;
-  padding: 10px;
-  border: 1px solid #ffcc00; /* 黄色のボーダー */
-  margin: 5px 0;
-  border-radius: 4px;
-  transition: background-color 0.3s;
-}
-
-.user-item:hover {
-  background-color: #ffeb3b; /* ホバー時の色 */
-}
-
-.no-users {
-  font-style: italic;
-  color: #999;
-}

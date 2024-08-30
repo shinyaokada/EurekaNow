@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import "./CheckedInUsers.css"
 
 const BACKEND_URL = 'https://eureka-now-backend.vercel.app/';
 
@@ -23,10 +23,14 @@ function CheckedInUsers() {
 
   return (
     <div>
-      <ul>
-        {checkedInUsers.map((user, index) => (
-          <li key={index}>{user.name}</li>
-        ))}
+      <ul className="user-list">
+        {checkedInUsers.length > 0 ? (
+            checkedInUsers.map((user) => (
+              <li className="user-item" key={user.id}>{user.name}</li>
+            ))
+          ) : (
+            <li className="no-users">チェックインしているユーザーはいません。</li> // メッセージを表示
+        )}
       </ul>
     </div>
   );

@@ -1,8 +1,8 @@
 import React from 'react';
-import CheckedInUsers from './CheckedInUsers';
+import CheckedInUsers from './CheckedInUsers/CheckedInUsers';
 import './App.css';
 import SocialIcons from './SocialIcons';
-
+import Schedule from './schedule/schedule';
 
 
 function App() {
@@ -10,8 +10,10 @@ function App() {
     <div>
       <div className="title">EurekaNow</div>
       <div className="container">
+        <div className="container-title">eureka現在の住人</div>
         <CheckedInUsers />
       </div>  
+      <Schedule />
       <SocialIcons />
     </div>
     

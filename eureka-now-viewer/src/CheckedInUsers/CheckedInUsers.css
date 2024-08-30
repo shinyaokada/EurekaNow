@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c');
+
+/* ユーザーリスト全体 */
+.user-list {
+    list-style: none; /* デフォルトの箇条書きポイントを削除 */
+    padding: 0.5em; /* 内側のスペース */
+    margin: 0;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-weight: bold;
+}
+
+/* 各個別ユーザーアイテム */
+.user-item {
+    font-size: 160%; /* 少し大きめのテキスト */
+    padding: 10px; /* アイテム内のスペース */
+    margin-bottom: 5px; /* アイテム間のスペース */
+    position: relative; /* 擬似要素のための相対位置 */
+    border-bottom: 1px solid rgba(255, 143, 0, 1); /* 下部のボーダー */
+}
+
+
+/* 擬似要素のスタイル */
+.user-item:before,
+.user-item:after {
+    position: absolute;
+    content: '';
+    transform: rotate(45deg);
+}
+
+.user-item:before {
+    top: 0.7em; /* 上からの位置 */
+    left: 0.2em; /* 左からの位置 */
+    width: 12px; /* 幅 */
+    height: 12px; /* 高さ */
+    border: 2px solid rgba(255, 143, 0, 1); /* ボーダー */
+}
+
+.user-item:after {
+    top: 0.9em; /* 上からの位置 */
+    left: 0.7em; /* 左からの位置 */
+    width: 14px; /* 幅 */
+    height: 14px; /* 高さ */
+    background: rgba(255, 143, 0, 0.5); /* 背景色 */
+    transform: rotate(60deg); /* 回転 */
+}
+
+/* チェックインしているユーザーがいない時のメッセージ */
+.no-users {
+    font-style: italic; /* イタリック体 */
+    color: #999; /* 薄い灰色 */
+    margin-top: 20px; /* メッセージの上のスペース */
+    text-align: center; /* メッセージを中央揃え */
+    font-size: 1.1em; /* 少し大きめのフォント */
+}
