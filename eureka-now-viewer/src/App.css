@@ -40,3 +40,13 @@ body {
   font-weight: bold;
 }
 
+@media (max-width: 600px) {
+  .container {
+    width: 80%; /* 幅を90%にして左右に余白を確保 */
+    margin: 10px auto; /* 自動で左右のマージンを設定 */
+  }
+
+  .title {
+    font-size: 36px; /* フォントサイズを小さく */
+  }
+}
