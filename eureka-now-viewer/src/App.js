@@ -1,6 +1,7 @@
 import React from 'react';
 import CheckedInUsers from './CheckedInUsers';
 import './App.css';
+import SocialIcons from './SocialIcons';
 
 
 
@@ -11,6 +12,7 @@ function App() {
       <div className="container">
         <CheckedInUsers />
       </div>  
+      <SocialIcons />
     </div>
     
   );
