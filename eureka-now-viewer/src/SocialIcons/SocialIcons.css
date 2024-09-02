@@ -1,0 +1,7 @@
+/* SocialIcons.css */
+.social-icons-container {
+    display: flex;
+    justify-content: center; /* コンテナをセンターに寄せる */
+    align-items: center;
+  }
+  

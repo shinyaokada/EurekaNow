@@ -1,7 +1,7 @@
 import React from 'react';
 import CheckedInUsers from './CheckedInUsers/CheckedInUsers';
 import './App.css';
-import SocialIcons from './SocialIcons';
+import SocialIcons from './SocialIcons/SocialIcons';
 import Schedule from './schedule/schedule';
 
 
