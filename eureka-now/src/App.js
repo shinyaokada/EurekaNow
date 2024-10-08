@@ -10,7 +10,7 @@ function App() {
   const [name, setName] = useState('');
 
   useEffect(() => {
-    // MongoDBからデータを取得
+    // backendからデータを取得
     axios.get(BACKEND_URL + 'users')
       .then(response => {
         const users = response.data;
