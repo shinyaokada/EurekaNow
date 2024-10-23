@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
+import CheckedInUsers from './checked-in-users/CheckedInUsers';
+import RegisteredUsers from './registered-users/RegisteredUsers';
+import EditUsers from './delete-users/EditUsers';
+import RegisterForm from './register-form/RegisterForm';
+
 
 const BACKEND_URL = 'https://eureka-now-backend.vercel.app/';
 
 function App() {
   const [checkedInUsers, setCheckedInUsers] = useState([]);
   const [registeredUsers, setRegisteredUsers] = useState([]);
+  const [deleteMode,setDeleteMode] = useState(false);
   const [name, setName] = useState('');
 
   useEffect(() => {
@@ -25,7 +31,7 @@ function App() {
       .catch(error => console.error('Error fetching users:', error));
   }, []);
 
-  const handleRegister = () => {
+  const handleRegister = (name,setName) => {
     if (!name) {
       console.log('Please enter a name.');
       return;
@@ -61,51 +67,37 @@ function App() {
       .catch(error => console.error('Error checking out user:', error));
   };
 
-  const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
-      handleRegister();
-    }
-  };
+
+  const toggleDeleteMode = () => {
+    setDeleteMode(prevMode => !prevMode);
+  }
 
   return (
     <div>
       <div>
         <div className="title">EurekaNow</div>
         <div className="container">
-          <div className="column">
-            <h2>Checked-in Users</h2>
-            <ul>
-              {checkedInUsers.map((user, index) => (
-                <li key={user._id} onClick={() => handleCheckOut(user)}>
-                  {user.name}
-                </li>
-              ))}
-            </ul>
-          </div>
+          
+       
+          {deleteMode? 
+            <div className="container">
+              <EditUsers users={registeredUsers}/>
+            </div>
+          :
+            <div className="container">
+              <CheckedInUsers users={checkedInUsers} handleCheckOUt={handleCheckOut} />
+              <RegisteredUsers users={registeredUsers} handleCheckIn={handleCheckIn}/>
+              <RegisterForm handleRegister={handleRegister} name={name} setName={setName}/>
+            </div>
+          }
 
-          <div className="column">
-            <h2>Registered Users</h2>
-            <ul>
-              {registeredUsers.map((user, index) => (
-                <li key={user._id} onClick={() => handleCheckIn(user)}>
-                  {user.name}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="register-column">
-            <h2>Register</h2>
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              onKeyPress={handleKeyPress}
-              placeholder="Enter your name"
-            />
-            <button onClick={handleRegister}>Register</button>
-          </div>
+          
         </div>
+      </div>
+      <div className="button-container">
+        <button onClick={toggleDeleteMode}>
+          {deleteMode ? "編集モードOFF":"編集モードON"}
+        </button>
       </div>
     </div>
   );
