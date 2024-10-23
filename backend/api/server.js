@@ -67,7 +67,7 @@ app.get('/get-ip', (req, res) => {
   res.status(200).json({ ip });
 });
 
-app.put('/users/checkout-all', async (req, res) => {
+app.put('/checkout-all', async (req, res) => {
   try {
     await User.updateMany({ isCheckedIn: true }, { isCheckedIn: false });
     res.status(200).send('All users checked out');
