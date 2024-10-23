@@ -3,8 +3,8 @@ import axios from 'axios';
 import './App.css';
 import CheckedInUsers from './checked-in-users/CheckedInUsers';
 import RegisteredUsers from './registered-users/RegisteredUsers';
-import EditUsers from './delete-users/EditUsers';
 import RegisterForm from './register-form/RegisterForm';
+import EditContainer from './edit-container/EditContainer';
 
 
 const BACKEND_URL = 'https://eureka-now-backend.vercel.app/';
@@ -80,12 +80,10 @@ function App() {
           
        
           {deleteMode? 
-            <div className="container">
-              <EditUsers users={registeredUsers}/>
-            </div>
+            <EditContainer users={registeredUsers}/>
           :
             <div className="container">
-              <CheckedInUsers users={checkedInUsers} handleCheckOUt={handleCheckOut} />
+              <CheckedInUsers users={checkedInUsers} handleCheckOut={handleCheckOut} />
               <RegisteredUsers users={registeredUsers} handleCheckIn={handleCheckIn}/>
               <RegisterForm handleRegister={handleRegister} name={name} setName={setName}/>
             </div>

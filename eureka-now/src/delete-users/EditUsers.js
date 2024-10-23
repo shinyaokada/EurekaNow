@@ -1,6 +1,6 @@
 import React from 'react';
 
-function EditUsers({users,handleCheckIn}){
+function EditUsers({users}){
     return (
         
       <div className="column">
@@ -8,7 +8,7 @@ function EditUsers({users,handleCheckIn}){
         <ul>
           {users.map((user, index) => (
             <div>
-              <li key={user._id} onClick={() => handleCheckIn(user)}>
+              <li key={user._id} onClick={() => {}}>
                 {user.name}
               </li>
             </div>
