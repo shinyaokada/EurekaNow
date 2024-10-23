@@ -7,11 +7,9 @@ function EditUsers({users}){
         <h2>編集するユーザーをクリック</h2>
         <ul>
           {users.map((user, index) => (
-            <div>
               <li key={user._id} onClick={() => {}}>
                 {user.name}
               </li>
-            </div>
           ))}
         </ul>
       </div>

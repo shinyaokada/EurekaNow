@@ -9,7 +9,7 @@ function RegisterForm({handleRegister,name,setName}){
     return (
         
             <div className="register-column">
-            <h2>Register</h2>
+            <h2>まずは登録</h2>
             <input
               type="text"
               value={name}
@@ -17,7 +17,7 @@ function RegisterForm({handleRegister,name,setName}){
               onKeyDown={handleKeyDown}
               placeholder="Enter your name"
             />
-              <button onClick={() => handleRegister(name,setName)}>Register</button>
+              <button onClick={() => handleRegister(name,setName)}>登録</button>
             </div>
     )
 }

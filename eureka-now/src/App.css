@@ -103,14 +103,25 @@ button:hover {
 
 .register-column {
   flex: 1;
-  margin: 0 20px;
+  margin: 0 2%;
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
+.register-column input{
+  margin-top:30%;
+}
+
 .button-container{
   display:flex;
-  justify-content:center;
+  margin-top:30%;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.button-container button{
+  margin:2% 0;
 }

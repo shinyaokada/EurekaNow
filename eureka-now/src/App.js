@@ -14,6 +14,7 @@ function App() {
   const [registeredUsers, setRegisteredUsers] = useState([]);
   const [deleteMode,setDeleteMode] = useState(false);
   const [name, setName] = useState('');
+  const [trigger, setTrigger] = useState(0);//useEffect発火用
 
   useEffect(() => {
     // backendからデータを取得
@@ -29,7 +30,7 @@ function App() {
 
       
       .catch(error => console.error('Error fetching users:', error));
-  }, []);
+  }, [trigger]);
 
   const handleRegister = (name,setName) => {
     if (!name) {
@@ -72,6 +73,22 @@ function App() {
     setDeleteMode(prevMode => !prevMode);
   }
 
+  const handleClose = () => {
+    axios.put(BACKEND_URL + 'checkout-all')
+      .then(response=>{
+        try{
+          setTrigger(prev => prev+1);
+        }
+        catch(error){
+          console.error('Error checking out all (frontend)',error);
+        }
+        console.log("eureka closed success");
+      })
+      .catch(error => console.error('Error checking out all:',error))
+
+
+  }
+
   return (
     <div>
       <div>
@@ -85,18 +102,23 @@ function App() {
             <div className="container">
               <CheckedInUsers users={checkedInUsers} handleCheckOut={handleCheckOut} />
               <RegisteredUsers users={registeredUsers} handleCheckIn={handleCheckIn}/>
+              <div>
               <RegisterForm handleRegister={handleRegister} name={name} setName={setName}/>
+                <div className="button-container">
+                  <button onClick={handleClose}>本日の営業終了</button>
+                  <button onClick={toggleDeleteMode} hidden>
+                    {deleteMode ? "編集モードOFF":"編集モードON"}
+                  </button>
+                </div>
+              </div>
             </div>
+            
           }
 
           
         </div>
       </div>
-      <div className="button-container">
-        <button onClick={toggleDeleteMode}>
-          {deleteMode ? "編集モードOFF":"編集モードON"}
-        </button>
-      </div>
+     
     </div>
   );
 }

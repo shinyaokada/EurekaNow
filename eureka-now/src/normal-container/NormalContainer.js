@@ -1,11 +1,10 @@
 import React from 'react';
-import EditUsers from '../delete-users/EditUsers';
 
-function EditContainer({users}){
+function NormalContainer({users}){
     return (
         <div className="container">
             <EditUsers users={users}/>
         </div>
     )
 }
-export default EditContainer;
+export default NormalContainer;
